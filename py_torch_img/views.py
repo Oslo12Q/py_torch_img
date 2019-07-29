@@ -80,7 +80,7 @@ def input_img(request):
         original_image.close()
 
         #results = main_arr(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
-        def wait_ready(img_name,out_path):
+        def wait_ready(img_name,out_paths):
             for i in xrange(10):
                 ret = detect_ready(img_name,out_paths)
                 if ret:
@@ -88,7 +88,7 @@ def input_img(request):
                 time.sleep(1)
             return ''
         # 检索生成的new图片
-        detect_path = wait_ready(img_name,out_path)
+        detect_path = wait_ready(img_name,out_paths)
         print (detect_path)
         return get_json_response(request, dict(suc_id=0, ret_cd=200, ret_ts=int(time.time()),errorMsg = '',im_id=img_name,successResult=''))
 
