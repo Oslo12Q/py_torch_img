@@ -65,7 +65,7 @@ def input_img(request):
             return get_json_response(request, dict(suc_id=0, ret_cd=104, ret_ts=int(time.time()),errorMsg = 'This action does not exist',im_id='', successResult=''))
         
         input_paths = input_path(mac_app_id) # 创建输入目录
-        out_paths = out_path(mac_app_id) # 创建输出目录
+        out_paths = output_path(mac_app_id) # 创建输出目录
 
         file_obj_base = base64.b64encode(img_file.read()) #读取文件内容，转换为base64编码   
         img_name = '{}_{}.jpg'.format(int(time.time()),random.randint(1000, 9999),)
