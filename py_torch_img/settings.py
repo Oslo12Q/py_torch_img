@@ -89,7 +89,7 @@ MEDIA_URL = '/images/'
 # 输入路径
 INPUT_PATH = '/data/py_torch/py_torch_img/py_torch_img/stargan_master/input/'
 # 输出路径
-OUTPUT_PATH = '/data/py_torch/py_torch_img/py_torch_img/stargan_master/result/'
+OUTPUT_PATH = '/data/py_torch/py_torch_img/images/'
 # 模型路径
 MODEL_PATH = '/data/py_torch/py_torch_img/py_torch_img/stargan_master/stargan_celeba_256/models'
 # 检索文件.jpg
