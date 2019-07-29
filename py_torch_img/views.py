@@ -12,6 +12,7 @@ import traceback
 import threading
 import time
 import json
+import base64
 import random
 import datetime
 from django.conf import settings
