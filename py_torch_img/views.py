@@ -81,7 +81,7 @@ def input_img(request):
 
         #results = main_arr(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
         def wait_ready(img_name,out_paths):
-            for i in xrange(10):
+            for i in range(10):
                 ret = detect_ready(img_name,out_paths)
                 if ret:
                     return ret
