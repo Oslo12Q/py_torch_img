@@ -73,13 +73,13 @@ def input_img(request):
         file_obj_base = base64.b64encode(img_file.read()) #读取文件内容，转换为base64编码   
         img_name = '{}_{}.jpg'.format(int(time.time()),random.randint(1000, 9999),)
         original_image_dest = input_paths +'/'+'{}'.format(img_name)
-
+        
         file_objects = base64.b64decode(file_obj_base) #base64转化为图片
         original_image = open(original_image_dest, 'wb+')
         original_image.write(file_objects)
         original_image.close()
-
-        #results = main_arr(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
+        print (input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
+        results = main_arr(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
         def wait_ready(img_name,out_paths):
             for i in range(10):
                 ret = detect_ready(img_name,out_paths)
