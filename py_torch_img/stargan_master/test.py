@@ -5,16 +5,16 @@
 # @author Oslo
 # @version 2019-07-28.
 
-import os
+import sys
 #from main_arr import main_arr
 
 if __name__ == '__main__':
-    input_dir = os.args[0]
+    input_dir = sys.argv[0]
     print ('584844')
     print (input_dir)
-    imagename = os.args[1]
-    model_save_dir = os.args[2]
-    selected_attrs = os.args[3]
-    result_dir = os.args[4]
+    imagename = sys.argv[1]
+    model_save_dir = sys.argv[2]
+    selected_attrs = sys.argv[3]
+    result_dir = sys.argv[4]
 
     #main_arr(input_dir,imagename,model_save_dir,selected_attrs,result_dir)
