@@ -6,7 +6,7 @@
 # @version 2019-07-28.
 
 import os
-from .main_arr import main_arr
+from main_arr import main_arr
 
 if __name__ == '__main__':
     input_dir = os.args[0]
