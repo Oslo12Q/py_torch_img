@@ -6,7 +6,7 @@
 # @version 2019-07-28.
 
 import os
-from main_arr import main_arr
+#from main_arr import main_arr
 
 if __name__ == '__main__':
     input_dir = os.args[0]
@@ -17,4 +17,4 @@ if __name__ == '__main__':
     selected_attrs = os.args[3]
     result_dir = os.args[4]
 
-    main_arr(input_dir,imagename,model_save_dir,selected_attrs,result_dir)
+    #main_arr(input_dir,imagename,model_save_dir,selected_attrs,result_dir)
