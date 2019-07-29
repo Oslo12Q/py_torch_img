@@ -170,7 +170,7 @@ class Solver(object):
                     x_fake_list.append(self.G(x_real, c_trg))
                     # Save the translated images.
                 x_concat = torch.cat(x_fake_list, dim=3)
-                result_path = os.path.join(self.result_dir, '{}-out.jpg'.format(self.imagename))
+                result_path = os.path.join(self.result_dir, '{}.jpg'.format(self.imagename))
                 save_image(self.denorm(x_concat.data.cpu()), result_path, nrow=1, padding=0)
 
 
