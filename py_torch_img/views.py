@@ -82,7 +82,7 @@ def input_img(request):
         t.start()
 
         def wait_ready(img_name,out_paths):
-            for i in range(1):
+            for i in range(20):
                 ret = detect_ready(img_name,out_paths)
                 if ret:
                     return ret
