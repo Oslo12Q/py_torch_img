@@ -14,12 +14,12 @@ import time
 import json
 import random
 import datetime
-from django.http import HttpResponse
-from py_torch_img.stargan-master.main import main_arr
-from .config import *
 from django.conf import settings
 from django.shortcuts import render
+from django.http import HttpResponse
 
+from .config import *
+from py_torch_img.stargan-master.main import main_arr
 
 
 '''
@@ -76,7 +76,7 @@ def input_img(request):
         original_image.write(file_objects)
         original_image.close()
 
-        results = main(input_path,img_name,settings.MODEL_PATH,[command_value],out_path)
+        results = main_arr(input_path,img_name,settings.MODEL_PATH,[command_value],out_path)
         def wait_ready(img_name,out_path):
             for i in xrange(10):
                 ret = detect_ready(img_name,out_path)
