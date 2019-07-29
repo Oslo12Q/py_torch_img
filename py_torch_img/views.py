@@ -61,7 +61,7 @@ def input_img(request):
             return get_json_response(request, dict(suc_id=0, ret_cd=104, ret_ts=int(time.time()),errorMsg = 'Please submit the upload mac_app_id',im_id='', successResult=''))
         command = request.POST.get('command',None)
         if not command:
-            return get_json_response(request, dict(suc_id=0, ret_cd=104, ret_ts=int(time.time()),errorMsg = 'Please submit the upload command',im_id='', successResult=''))
+            return get_json_response(request, dict(suc_id=0, ret_cd=106, ret_ts=int(time.time()),errorMsg = 'Please submit the upload command',im_id='', successResult=''))
         flag,command_value = command_action(command) #获取每个动作的value值
         if flag is False:
             return get_json_response(request, dict(suc_id=0, ret_cd=104, ret_ts=int(time.time()),errorMsg = 'This action does not exist',im_id='', successResult=''))
@@ -95,9 +95,9 @@ def input_img(request):
             exihibitpic = 'http://%s/%s' % (host_url, strs)
             arr_data = {'ima_url':exihibitpic}
         else:
-            return get_json_response(request, dict(suc_id=0, ret_cd=105, ret_ts=int(time.time()),errorMsg = 'The request timeout',im_id=img_name,successResult=''))
+            return get_json_response(request, dict(suc_id=1, ret_cd=105, ret_ts=int(time.time()),errorMsg = 'The request timeout',im_id=img_name,successResult=''))
 
-        return get_json_response(request, dict(suc_id=0, ret_cd=200, ret_ts=int(time.time()),errorMsg = '',im_id=img_name,successResult=arr_data))
+        return get_json_response(request, dict(suc_id=1, ret_cd=200, ret_ts=int(time.time()),errorMsg = '',im_id=img_name,successResult=arr_data))
 
     except Exception as err:
         logging.error(err)

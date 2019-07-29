@@ -1,0 +1,98 @@
+# API 说明
+
+1.api地址(临时测试)
+
+    http://39.100.159.225/api/
+
+2.请求方式： POST
+
+3.请求参数：
+
+    （1）.im_id:图片
+    （2）.mac_app_id：mac地址/小程序openid
+    （3）.command：动作参数   00/黑发、01/金发 等~
+
+4.返回字段说明
+
+    suc_id：0  0/失败、1/成功
+    im_id：图片名称
+    errorMsg：错误详情
+    successResult：数据
+    ret_ts：时间戳
+    ret_cd： 405/请求方式不对、 104/未获取到参数、 105/请求超时、106/此动作不存在、 500/服务器故障、200/成功
+
+5.返回报文
+
+    （1）.请求方式正确返回报文
+        {
+            "suc_id": 0,
+            "im_id": "",
+            "errorMsg": "Method not allowed",
+            "successResult": "",
+            "ret_ts": 1564397141,
+            "ret_cd": 405
+        }
+
+    （2）.未获取到图片数据返回报文
+        {
+            "suc_id": 0,
+            "im_id": "",
+            "errorMsg": "The parameter format is not correct",
+            "successResult": "",
+            "ret_ts": 1564397680,
+            "ret_cd": 104
+        }
+
+    （3）.未获取到mac_app_id参数返回报文
+        {
+            "suc_id": 0,
+            "im_id": "",
+            "errorMsg": "Please submit the upload mac_app_id",
+            "successResult": "",
+            "ret_ts": 1564397755,
+            "ret_cd": 104
+        }
+
+    （4）.未获取到command动作参数返回报文
+        {
+            "suc_id": 0,
+            "im_id": "",
+            "errorMsg": "Please submit the upload command",
+            "successResult": "",
+            "ret_ts": 1564397817,
+            "ret_cd": 104
+        }
+
+    （5）.command动作参数不存在返回报文
+        {
+            "suc_id": 0,
+            "im_id": "",
+            "errorMsg": "This action does not exist",
+            "successResult": "",
+            "ret_ts": 1564397876,
+            "ret_cd": 106
+        }
+
+    （6）.请求超时，未获取到处理好的图片返回报文
+        {
+            "suc_id": 0,
+            "im_id": "1564397942_4693.jpg",
+            "errorMsg": "The request timeout",
+            "successResult": "",
+            "ret_ts": 1564397944,
+            "ret_cd": 105
+        }
+
+    （7）.服务器内部故障返回报文    
+        {
+            "suc_id": 0,
+            "im_id": "1564397942_4693.jpg",
+            "errorMsg": "Server internal error",
+            "successResult": "",
+            "ret_ts": 1564397944,
+            "ret_cd": 500
+        }
+
+    （8）.正确返回报文
+
+        
