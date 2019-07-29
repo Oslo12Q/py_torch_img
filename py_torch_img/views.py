@@ -50,6 +50,7 @@ def get_json_response(request, json_rsp):
 '''
 def input_img(request):
     try:
+        host_url = request.META['HTTP_HOST']
         if request.method != 'POST': 
             return get_json_response(request, dict(suc_id=0, ret_cd=405, ret_ts=int(time.time()),errorMsg = 'Method not allowed',im_id='',successResult=''))
         img_file = request.FILES.get("im_id", None)
@@ -89,8 +90,11 @@ def input_img(request):
             return ''
         # 检索生成的new图片
         detect_path = wait_ready(img_name,out_paths)
-        print (detect_path)
-        return get_json_response(request, dict(suc_id=0, ret_cd=200, ret_ts=int(time.time()),errorMsg = '',im_id=img_name,successResult=''))
+        if detect_path:
+            strs = detect_path[28:]
+        exihibitpic = 'http://%s/%s' % (host_url, strs)
+        arr_data = {'ima_url':exihibitpic}
+        return get_json_response(request, dict(suc_id=0, ret_cd=200, ret_ts=int(time.time()),errorMsg = '',im_id=img_name,successResult=arr_data))
 
     except Exception as err:
         logging.error(err)

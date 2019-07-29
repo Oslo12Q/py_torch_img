@@ -163,7 +163,7 @@ class Solver(object):
                 # Prepare input images and target domain labels.
                 x_real = x_real.to(self.device)
                 c_trg_list = self.create_labels_test(self.selected_attrs)
-                print(len(c_trg_list))
+                #print(len(c_trg_list))
                 # Translate images.
                 x_fake_list = []
                 for c_trg in c_trg_list:
