@@ -87,10 +87,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
 MEDIA_URL = '/images/'
 
 # 输入路径
+INPUT_PATH = '/data/py_torch/py_torch_img/py_torch_img/stargan_master/input/'
+# 输出路径
+OUTPUT_PATH = '/data/py_torch/py_torch_img/py_torch_img/stargan_master/result/'
+# 模型路径
+MODEL_PATH = '/data/py_torch/py_torch_img/py_torch_img/stargan_master/stargan_celeba_256/models'
+# 检索文件.jpg
+IMG_OUTPUT_EXTENSIONS = ['.jpg']
+
+'''
+# 输入路径
 INPUT_PATH = '/data/stargan_master/input/'
 # 输出路径
 OUTPUT_PATH = '/data/stargan_master/result/'
 # 模型路径
 MODEL_PATH = '/data/stargan_master/stargan_celeba_256/models'
-# 检索文件.jpg
-IMG_OUTPUT_EXTENSIONS = ['.jpg']
+
+'''
