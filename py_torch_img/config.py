@@ -74,8 +74,9 @@ def detect_ready(fid,output_path):
 '''
 # 命令行执行脚本
 '''
-def Cmd(input_dir,imagename,model_save_dir,selected_attrs,result_dir):
+def Cmd_po(input_dir,imagename,model_save_dir,selected_attrs,result_dir):
     cmd = u'python3 /data/stargan_master/test.py {input_dir} {imagename} {model_save_dir} {selected_attrs} {result_dir}'.format(input_dir=input_dir, imagename=imagename,model_save_dir=model_save_dir,selected_attrs=selected_attrs,result_dir=result_dir)
+    print (cmd)
     p = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
     out,err = p.communicate()
     for i in out.splitlines():
