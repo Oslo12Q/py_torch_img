@@ -30,7 +30,7 @@ class CelebA(data.Dataset):
     def preprocess(self):
         """Preprocess the CelebA attribute file."""
         lines = [line.rstrip() for line in open(self.attr_path, 'r')]
-        print(self.attr_path)
+        #print(self.attr_path)
         all_attr_names = lines[1].split()
         for i, attr_name in enumerate(all_attr_names):
             self.attr2idx[attr_name] = i
@@ -51,7 +51,7 @@ class CelebA(data.Dataset):
                 label.append(values[idx] == '1')
             self.train_dataset.append([filename, label])
 
-        print('Finished preprocessing the CelebA dataset...')
+        #print('Finished preprocessing the CelebA dataset...')
 
     def __getitem__(self, index):
         """Return one image and its corresponding attribute label."""
@@ -76,7 +76,7 @@ class Mytest(data.Dataset):
         self.testdata.append([self.imagename])
         self.num_images = len(self.testdata)
 
-        print('Finished preprocessing the CelebA dataset...')
+        #print('Finished preprocessing the CelebA dataset...')
 
     def __getitem__(self, index):
         """Return one image and its corresponding attribute label."""

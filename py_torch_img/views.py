@@ -77,12 +77,12 @@ def input_img(request):
         original_image.write(file_objects)
         original_image.close()
         print (input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
-        #results = main_arr(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
+        results = main_arr(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
         t = threading.Thread(target= main_arr,args = (input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths))
         t.start()
 
         def wait_ready(img_name,out_paths):
-            for i in range(10):
+            for i in range(15):
                 ret = detect_ready(img_name,out_paths)
                 if ret:
                     return ret
