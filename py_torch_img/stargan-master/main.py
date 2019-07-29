@@ -8,7 +8,7 @@ from torch.backends import cudnn
 def str2bool(v):
     return v.lower() in ('true')
 
-def main(input_dir,imagename,model_save_dir,selected_attrs,result_dir):
+def main_arr(input_dir,imagename,model_save_dir,selected_attrs,result_dir):
     parser = argparse.ArgumentParser()
     parser.add_argument('--input_dir', type=str, default=input_dir)
     parser.add_argument('--imagename', type=str, default=imagename)

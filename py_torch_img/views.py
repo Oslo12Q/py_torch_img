@@ -15,7 +15,7 @@ import json
 import random
 import datetime
 from django.http import HttpResponse
-from .stargan-master.main import main
+from py_torch_img.stargan-master.main import main_arr
 from .config import *
 from django.conf import settings
 from django.shortcuts import render
