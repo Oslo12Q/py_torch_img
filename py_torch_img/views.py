@@ -79,7 +79,7 @@ def input_img(request):
         original_image.write(file_objects)
         original_image.close()
 
-        results = main_arr(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
+        #results = main_arr(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
         def wait_ready(img_name,out_path):
             for i in xrange(10):
                 ret = detect_ready(img_name,out_paths)
