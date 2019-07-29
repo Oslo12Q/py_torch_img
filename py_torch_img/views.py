@@ -20,7 +20,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from .config import *
-#from py_torch_img.stargan_master.main_arr import main_arr
+from py_torch_img.stargan_master.main import link
 
 
 '''
@@ -79,7 +79,7 @@ def input_img(request):
         print (input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
         
         #results = main_arr(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
-        t = threading.Thread(target= Cmd,args = (input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths))
+        t = threading.Thread(target= link,args = (input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths))
         t.start()
 
         def wait_ready(img_name,out_paths):

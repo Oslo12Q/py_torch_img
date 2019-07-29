@@ -17,21 +17,21 @@ from django.conf import settings
 '''
 def command_action(action):
     try:
-        if action == '00':
+        if action == '00': # 黑发
             return True,'Black_Hair'
-        elif action == '01':
+        elif action == '01': # 金发
             return True,'Blond_Hair'
-        elif action == '02':
+        elif action == '02': # 棕发
             return True,'Brown_Hair'
-        elif action == '03':
+        elif action == '03': # 灰发
             return True,'Gray_Hair'
-        elif action == '10':
+        elif action == '10': # 年轻
             return True,'Yong'
-        elif action == '11':
+        elif action == '11': # 老
             return True,'old'
-        elif action == '20':
+        elif action == '20': # 男
             return True,'Male'
-        elif action == '21':
+        elif action == '21': # 女
             return True,'Female'
         else:
             return False,None
@@ -71,11 +71,4 @@ def detect_ready(fid,output_path):
         if os.path.exists(path):
             return path
 
-'''
-# 命令行执行脚本
-'''
-def Cmd(input_dir,imagename,model_save_dir,selected_attrs,result_dir):
-    cmd = u'python3 /data/stargan_master/test.py {input_dir} {imagename} {model_save_dir} {selected_attrs} {result_dir}'.format(input_dir=input_dir, imagename=imagename,model_save_dir=model_save_dir,selected_attrs=selected_attrs,result_dir=result_dir)
-    print (cmd)
-    p = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
-    out,err = p.communicate()
+

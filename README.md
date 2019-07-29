@@ -21,5 +21,9 @@ python manage.py runserver 0.0.0.0:80
 # API 地址
 ```
 yuming/api/
+```
 
+# 请求方式
+```
+POST
 ```
