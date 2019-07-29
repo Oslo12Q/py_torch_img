@@ -7,6 +7,7 @@
 
 
 import os
+import subprocess
 from django.conf import settings
 
 '''
@@ -69,3 +70,13 @@ def detect_ready(fid,output_path):
         path = os.path.join(output_path, '{}{}'.format(fid, extension))
         if os.path.exists(path):
             return path
+
+'''
+# 命令行执行脚本
+'''
+def Cmd(input_dir,imagename,model_save_dir,selected_attrs,result_dir):
+    cmd = u'python3 /data/py_torch/py_torch_img/py_torch_img/stargan_master/test.py {input_dir} {imagename} {model_save_dir} {selected_attrs} {result_dir}'.format(input_dir=input_dir, imagename=imagename,model_save_dir=model_save_dir,selected_attrs=selected_attrs,result_dir=result_dir)
+    p = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
+    out,err = p.communicate()
+    for i in out.splitlines():
+        print i
