@@ -20,7 +20,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from .config import *
-from py_torch_img.stargan_master.main_arr import main_arr
+#from py_torch_img.stargan_master.main_arr import main_arr
 
 
 '''
