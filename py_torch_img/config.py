@@ -79,5 +79,3 @@ def Cmd_po(input_dir,imagename,model_save_dir,selected_attrs,result_dir):
     print (cmd)
     p = subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE)
     out,err = p.communicate()
-    for i in out.splitlines():
-        print (i)
