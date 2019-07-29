@@ -82,7 +82,7 @@ def input_img(request):
         t.start()
 
         def wait_ready(img_name,out_paths):
-            for i in range(20):
+            for i in range(1):
                 ret = detect_ready(img_name,out_paths)
                 if ret:
                     return ret
@@ -92,8 +92,11 @@ def input_img(request):
         detect_path = wait_ready(img_name,out_paths)
         if detect_path:
             strs = detect_path[28:]
-        exihibitpic = 'http://%s/%s' % (host_url, strs)
-        arr_data = {'ima_url':exihibitpic}
+            exihibitpic = 'http://%s/%s' % (host_url, strs)
+            arr_data = {'ima_url':exihibitpic}
+        else:
+            return get_json_response(request, dict(suc_id=0, ret_cd=105, ret_ts=int(time.time()),errorMsg = 'The request timeout',im_id=img_name,successResult=''))
+
         return get_json_response(request, dict(suc_id=0, ret_cd=200, ret_ts=int(time.time()),errorMsg = '',im_id=img_name,successResult=arr_data))
 
     except Exception as err:
