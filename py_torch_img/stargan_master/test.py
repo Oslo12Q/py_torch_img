@@ -9,12 +9,12 @@ import sys
 from main_arr import main_arr
 
 if __name__ == '__main__':
-    input_dir = sys.argv[0]
+    input_dir = sys.argv[1]
     print ('584844')
     print (input_dir)
-    imagename = sys.argv[1]
-    model_save_dir = sys.argv[2]
-    selected_attrs = sys.argv[3]
-    result_dir = sys.argv[4]
+    imagename = sys.argv[2]
+    model_save_dir = sys.argv[3]
+    selected_attrs = sys.argv[4]
+    result_dir = sys.argv[5]
 
     main_arr(input_dir,imagename,model_save_dir,selected_attrs,result_dir)

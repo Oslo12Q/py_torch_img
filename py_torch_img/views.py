@@ -100,7 +100,6 @@ def input_img(request):
         return get_json_response(request, dict(suc_id=0, ret_cd=500, ret_ts=int(time.time()),errorMsg = 'Server internal error',im_id='',successResult=''))
 
 
-
 '''
 # 404页面
 '''
