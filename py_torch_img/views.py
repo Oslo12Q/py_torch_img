@@ -52,19 +52,19 @@ def input_img(request):
     try:
         host_url = request.META['HTTP_HOST']
         if request.method != 'POST': 
-            return get_json_response(request, dict(suc_id=0, ret_cd=405, ret_ts=int(time.time()),errorMsg = 'Method not allowed',im_id='',successResult=''))
+            return get_json_response(request, dict(suc_id=0, ret_cd=405, ret_ts=int(time.time()),errorMsg = 'Method not allowed',im_id='',successResult=None))
         img_file = request.FILES.get("im_id", None)
         if not img_file:
-            return get_json_response(request, dict(suc_id=0, ret_cd=104, ret_ts=int(time.time()),errorMsg = 'The parameter format is not correct',im_id='', successResult=''))
+            return get_json_response(request, dict(suc_id=0, ret_cd=104, ret_ts=int(time.time()),errorMsg = 'The parameter format is not correct',im_id='', successResult=None))
         mac_app_id = request.POST.get('mac_app_id',None)
         if not mac_app_id:
-            return get_json_response(request, dict(suc_id=0, ret_cd=104, ret_ts=int(time.time()),errorMsg = 'Please submit the upload mac_app_id',im_id='', successResult=''))
+            return get_json_response(request, dict(suc_id=0, ret_cd=104, ret_ts=int(time.time()),errorMsg = 'Please submit the upload mac_app_id',im_id='', successResult=None))
         command = request.POST.get('command',None)
         if not command:
-            return get_json_response(request, dict(suc_id=0, ret_cd=106, ret_ts=int(time.time()),errorMsg = 'Please submit the upload command',im_id='', successResult=''))
+            return get_json_response(request, dict(suc_id=0, ret_cd=106, ret_ts=int(time.time()),errorMsg = 'Please submit the upload command',im_id='', successResult=None))
         flag,command_value = command_action(command) #获取每个动作的value值
         if flag is False:
-            return get_json_response(request, dict(suc_id=0, ret_cd=104, ret_ts=int(time.time()),errorMsg = 'This action does not exist',im_id='', successResult=''))
+            return get_json_response(request, dict(suc_id=0, ret_cd=104, ret_ts=int(time.time()),errorMsg = 'This action does not exist',im_id='', successResult=None))
         
         input_paths = input_path(mac_app_id) # 创建输入目录
         out_paths = output_path(mac_app_id) # 创建输出目录
@@ -95,14 +95,14 @@ def input_img(request):
             exihibitpic = 'http://%s/%s' % (host_url, strs)
             arr_data = {'ima_url':exihibitpic}
         else:
-            return get_json_response(request, dict(suc_id=1, ret_cd=105, ret_ts=int(time.time()),errorMsg = 'The request timeout',im_id=img_name,successResult=''))
+            return get_json_response(request, dict(suc_id=1, ret_cd=105, ret_ts=int(time.time()),errorMsg = 'The request timeout',im_id=img_name,successResult=None))
 
         return get_json_response(request, dict(suc_id=1, ret_cd=200, ret_ts=int(time.time()),errorMsg = '',im_id=img_name,successResult=arr_data))
 
     except Exception as err:
         logging.error(err)
         logging.error(traceback.format_exc())
-        return get_json_response(request, dict(suc_id=0, ret_cd=500, ret_ts=int(time.time()),errorMsg = 'Server internal error',im_id='',successResult=''))
+        return get_json_response(request, dict(suc_id=0, ret_cd=500, ret_ts=int(time.time()),errorMsg = 'Server internal error',im_id='',successResult=None))
 
 
 '''
