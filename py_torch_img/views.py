@@ -49,13 +49,6 @@ def get_json_response(request, json_rsp):
 # 参数： im_id/图片key, mac_app_id/mac地址、小程序用户id, command/动作
 '''
 def input_img(request):
-    if request.META.has_key('HTTP_X_FORWARDED_FOR'):
-        ip =  request.META['HTTP_X_FORWARDED_FOR']
-        print(ip)
-    
-    else:
-        ip = request.META['REMOTE_ADDR']
-        print (ip)
     try:
         host_url = request.META['HTTP_HOST']
         if request.method != 'POST': 
