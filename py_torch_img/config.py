@@ -24,15 +24,15 @@ def command_action(action):
         elif action == '02': # 棕发
             return True,'Brown_Hair'
         elif action == '03': # 灰发
-            return True,None
+            return False,None
         elif action == '10': # 年轻
             return True,'Young'
         elif action == '11': # 老
-            return True,None
+            return False,None
         elif action == '20': # 男
             return True,'Male'
         elif action == '21': # 女
-            return True,None
+            return False,None
         else:
             return False,None
     except Exception as err:
