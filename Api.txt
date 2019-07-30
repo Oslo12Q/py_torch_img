@@ -94,5 +94,13 @@
         }
 
     （8）.正确返回报文
-
-        
+        {
+            "successResult": {
+                "ima_url": "http://39.100.159.225/images/pppp/1564398168_3757.jpg.jpg"
+            },
+            "ret_ts": 1564398170,
+            "im_id": "1564398168_3757.jpg",
+            "suc_id": 1,
+            "errorMsg": "",
+            "ret_cd": 200
+        }
