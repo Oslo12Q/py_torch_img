@@ -61,10 +61,10 @@ def input_img(request):
             return get_json_response(request, dict(suc_id=0, ret_cd=104, ret_ts=int(time.time()),errorMsg = 'Please submit the upload mac_app_id',im_id='', successResult=None))
         command = request.POST.get('command',None)
         if not command:
-            return get_json_response(request, dict(suc_id=0, ret_cd=106, ret_ts=int(time.time()),errorMsg = 'Please submit the upload command',im_id='', successResult=None))
+            return get_json_response(request, dict(suc_id=0, ret_cd=104, ret_ts=int(time.time()),errorMsg = 'Please submit the upload command',im_id='', successResult=None))
         flag,command_value = command_action(command) #获取每个动作的value值
         if flag is False:
-            return get_json_response(request, dict(suc_id=0, ret_cd=104, ret_ts=int(time.time()),errorMsg = 'This action does not exist',im_id='', successResult=None))
+            return get_json_response(request, dict(suc_id=0, ret_cd=106, ret_ts=int(time.time()),errorMsg = 'This action does not exist',im_id='', successResult=None))
         
         input_paths = input_path(mac_app_id) # 创建输入目录
         out_paths = output_path(mac_app_id) # 创建输出目录
