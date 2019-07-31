@@ -91,7 +91,7 @@ def input_img(request):
         #except Exception as err:
         #    return get_json_response(request, dict(suc_id=1, ret_cd=105, ret_ts=int(time.time()),errorMsg = 'The request timeout',im_id=img_name,successResult=None))
         def wait_ready(img_name,out_paths):
-            for i in range(12):
+            for i in range(20):
                 ret = detect_ready(img_name,out_paths)
                 if ret:
                     return ret
