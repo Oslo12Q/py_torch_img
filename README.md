@@ -28,6 +28,9 @@ yuming/api/
 POST
 ```
 
+
+#目前api是同步，（new image ）时间比较慢，容易阻塞。建议异步  改成异步可以如下部署
+
 # 快速Nginx部署 ubuntu/系统
 ```
 #更新操作系统软件库
