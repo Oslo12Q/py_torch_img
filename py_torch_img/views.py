@@ -78,9 +78,9 @@ def input_img(request):
         original_image.write(file_objects)
         original_image.close()
 
-        t = threading.Thread(target= link,args = (input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths))
-        t.start()
-
+        #t = threading.Thread(target= link,args = (input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths))
+        #t.start()
+        link(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
         def wait_ready(img_name,out_paths):
             for i in range(12):
                 ret = detect_ready(img_name,out_paths)
