@@ -80,10 +80,10 @@ def input_img(request):
 
         #t = threading.Thread(target= link,args = (input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths))
         #t.start()
-        try:
-            link(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
-        except Exception as err:
-            return get_json_response(request, dict(suc_id=1, ret_cd=105, ret_ts=int(time.time()),errorMsg = 'The request timeout',im_id=img_name,successResult=None))
+        #try:
+        link(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
+        #except Exception as err:
+        #    return get_json_response(request, dict(suc_id=1, ret_cd=105, ret_ts=int(time.time()),errorMsg = 'The request timeout',im_id=img_name,successResult=None))
         def wait_ready(img_name,out_paths):
             for i in range(12):
                 ret = detect_ready(img_name,out_paths)
