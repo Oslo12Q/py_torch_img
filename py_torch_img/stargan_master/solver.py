@@ -131,7 +131,7 @@ class Solver(object):
                 x_fake = self.G(x_real, c_trg)
                 # Save the translated images.
                 x_result = self.denorm(x_fake.data.cpu())
-                result_path = os.path.join(self.result_dir, '{}-out.jpg'.format(self.imagename))
+                result_path = os.path.join(self.result_dir, '{}.jpg'.format(self.imagename))
 
                 result_new = T.ToPILImage()(torch.squeeze(x_result)).convert('RGB')
                 result_new = result_new.resize((self.shape[1],self.shape[0]),Image.BILINEAR)
