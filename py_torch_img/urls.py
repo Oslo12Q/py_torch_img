@@ -14,7 +14,7 @@ urlpatterns = [
     # Examples:
     url(r'^$',views.home, name='home'),
     url(r'^api/$',views.input_img, name = 'input_img'),
-    url(r'^admin/', include(admin.site.urls)),
+    #url(r'^admin/', include(admin.site.urls)),
 ]
 from django.conf import settings
 if settings.DEBUG is False:

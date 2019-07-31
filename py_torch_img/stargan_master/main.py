@@ -19,6 +19,7 @@ def link(input_dir,imagename,model_save_dir,selected_attrs,result_dir):
     selected_attrs=selected_attrs
     result_dir=result_dir
     num_workers=1
+    image_size=256
     # For fast training.
     cudnn.benchmark = True
 
@@ -31,15 +32,17 @@ def link(input_dir,imagename,model_save_dir,selected_attrs,result_dir):
         os.makedirs(sample_dir)
     if not os.path.exists(result_dir):
         os.makedirs(result_dir)
-
+        
+    orig_img = cv2.imread(os.path.join(input_dir, imagename))
+    shape= orig_img.shape
+    
     # Data loader.
 
     my_loader = None
-    my_loader = get_loader1 (input_dir, imagename, dataset, num_workers)
+    my_loader = get_loader1 (input_dir, imagename, dataset, image_size, num_workers)
 
     # Solver for training and testing StarGAN.
    
-    solver = Solver(dataset, my_loader, selected_attrs,imagename, model_save_dir,result_dir)
+    solver = Solver(dataset, my_loader, selected_attrs,imagename, model_save_dir,result_dir,shape)
     solver.test()
-
-
+    

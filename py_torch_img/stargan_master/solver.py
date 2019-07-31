@@ -9,18 +9,20 @@ import os
 import time
 import datetime
 import cv2
-
+from torchvision import transforms as T
+from PIL import Image
 
 class Solver(object):
     """Solver for training and testing StarGAN."""
 
-    def __init__(self, dataset, my_loader, selected_attrs,imagename, model_save_dir,result_dir):
+    def __init__(self, dataset, my_loader, selected_attrs,imagename, model_save_dir,result_dir,shape):
         """Initialize configurations."""
         self.imagename = imagename
 
         # Data loader.
 
         self.my_loader = my_loader
+        self.shape=shape
 
        # Model configurations.
         self.c_dim = 5
@@ -51,7 +53,6 @@ class Solver(object):
         self.test_iters = 200000
 
         # Miscellaneous.
-        self.use_tensorboard = False
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
         # Directories.
@@ -68,8 +69,7 @@ class Solver(object):
 
         # Build the model and tensorboard.
         self.build_model()
-        if self.use_tensorboard:
-            self.build_tensorboard()
+
 
     def build_model(self):
         """Create a generator and a discriminator."""    
@@ -89,50 +89,12 @@ class Solver(object):
         self.G.load_state_dict(torch.load(G_path, map_location=lambda storage, loc: storage))
         self.D.load_state_dict(torch.load(D_path, map_location=lambda storage, loc: storage))
 
-    def build_tensorboard(self):
-        """Build a tensorboard logger."""
-        from logger import Logger
-        self.logger = Logger(self.log_dir)
-
-    def update_lr(self, g_lr, d_lr):
-        """Decay learning rates of the generator and discriminator."""
-        for param_group in self.g_optimizer.param_groups:
-            param_group['lr'] = g_lr
-        for param_group in self.d_optimizer.param_groups:
-            param_group['lr'] = d_lr
-
-    def reset_grad(self):
-        """Reset the gradient buffers."""
-        self.g_optimizer.zero_grad()
-        self.d_optimizer.zero_grad()
+  
 
     def denorm(self, x):
         """Convert the range from [-1, 1] to [0, 1]."""
         out = (x + 1) / 2
         return out.clamp_(0, 1)
-
-    def gradient_penalty(self, y, x):
-        """Compute gradient penalty: (L2_norm(dy/dx) - 1)**2."""
-        weight = torch.ones(y.size()).to(self.device)
-        dydx = torch.autograd.grad(outputs=y,
-                                   inputs=x,
-                                   grad_outputs=weight,
-                                   retain_graph=True,
-                                   create_graph=True,
-                                   only_inputs=True)[0]
-
-        dydx = dydx.view(dydx.size(0), -1)
-        dydx_l2norm = torch.sqrt(torch.sum(dydx**2, dim=1))
-        return torch.mean((dydx_l2norm-1)**2)
-
-    def label2onehot(self, labels, dim):
-        """Convert label indices to one-hot vectors."""
-        batch_size = labels.size(0)
-        out = torch.zeros(batch_size, dim)
-        out[np.arange(batch_size), labels.long()] = 1
-        return out
-
-    
 
     def create_labels_test(self, selected_attrs=None):
         """Generate target domain labels for debugging and testing."""
@@ -163,15 +125,21 @@ class Solver(object):
                 # Prepare input images and target domain labels.
                 x_real = x_real.to(self.device)
                 c_trg_list = self.create_labels_test(self.selected_attrs)
-                #print(len(c_trg_list))
                 # Translate images.
-                x_fake_list = []
-                for c_trg in c_trg_list:
-                    x_fake_list.append(self.G(x_real, c_trg))
-                    # Save the translated images.
-                x_concat = torch.cat(x_fake_list, dim=3)
-                result_path = os.path.join(self.result_dir, '{}.jpg'.format(self.imagename))
-                save_image(self.denorm(x_concat.data.cpu()), result_path, nrow=1, padding=0)
+                c_trg = c_trg_list[0]
+
+                x_fake = self.G(x_real, c_trg)
+                # Save the translated images.
+                x_result = self.denorm(x_fake.data.cpu())
+                result_path = os.path.join(self.result_dir, '{}-out.jpg'.format(self.imagename))
+
+                result_new = T.ToPILImage()(torch.squeeze(x_result)).convert('RGB')
+                result_new = result_new.resize((self.shape[1],self.shape[0]),Image.BILINEAR)
+                result_new.save(result_path)
+                
+
+    
+                
 
 
    
