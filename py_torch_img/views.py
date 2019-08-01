@@ -51,16 +51,16 @@ def get_json_response(request, json_rsp):
 def input_img(request):
     try:
         host_url = request.META['HTTP_HOST']
-        if request.method != 'POST': 
+        if request.method != 'POST':  # 必须POST请求
             return get_json_response(request, dict(suc_id=0, ret_cd=405, ret_ts=int(time.time()),errorMsg = 'Method not allowed',im_id='',successResult=None))
-        img_file = request.FILES.get("im_id", None)
-        if not img_file:
+        img_file = request.FILES.get("im_id", None) 
+        if not img_file: # 如果im_id 不存在
             return get_json_response(request, dict(suc_id=0, ret_cd=104, ret_ts=int(time.time()),errorMsg = 'The parameter format is not correct',im_id='', successResult=None))
         mac_app_id = request.POST.get('mac_app_id',None)
-        if not mac_app_id:
+        if not mac_app_id: # 如果mac_app_id不存在
             return get_json_response(request, dict(suc_id=0, ret_cd=104, ret_ts=int(time.time()),errorMsg = 'Please submit the upload mac_app_id',im_id='', successResult=None))
-        command = request.POST.get('command',None)
-        if not command:
+        command = request.POST.get('command',None) 
+        if not command: # 如果command不存在
             return get_json_response(request, dict(suc_id=0, ret_cd=104, ret_ts=int(time.time()),errorMsg = 'Please submit the upload command',im_id='', successResult=None))
         flag,command_value = command_action(command) #获取每个动作的value值
         if flag is False:
@@ -70,7 +70,7 @@ def input_img(request):
         out_paths = output_path(mac_app_id) # 创建输出目录
 
         file_obj_base = base64.b64encode(img_file.read()) #读取文件内容，转换为base64编码   
-        img_name = '{}_{}.jpg'.format(int(time.time()),random.randint(1000, 9999),)
+        img_name = '{}_{}.jpg'.format(int(time.time()),random.randint(1000, 9999),) # 根据时间戳+随机数命名图片
         original_image_dest = input_paths +'/'+'{}'.format(img_name)
 
         file_objects = base64.b64decode(file_obj_base) #base64转化为图片
@@ -79,33 +79,24 @@ def input_img(request):
         original_image.close()
 
         #try: 建议异步，同步阻塞~
+        # 函数放线程里边处理
         t = threading.Thread(target= link,args = (input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths))
         t.start()
-        #t.join()
-        #except Exception as err:
-            
-        #    return get_json_response(request, dict(suc_id=1, ret_cd=105, ret_ts=int(time.time()),errorMsg = 'The request timeout',im_id=img_name,successResult=None))
-        
-        #try:
-        #ar_img = link(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
-        #except Exception as err:
-        #    return get_json_response(request, dict(suc_id=1, ret_cd=105, ret_ts=int(time.time()),errorMsg = 'The request timeout',im_id=img_name,successResult=None))
+
         def wait_ready(img_name,out_paths):
             for i in range(20):
                 ret = detect_ready(img_name,out_paths)
                 if ret:
                     return ret
-                time.sleep(1)
             return ''
         # 检索生成的new图片
         detect_path = wait_ready(img_name,out_paths)
         if detect_path:
-            strs = detect_path[28:]
+            strs = detect_path[28:] # 获取相对应的字符串
             exihibitpic = 'http://%s/%s' % (host_url, strs)
-            arr_data = {'ima_url':exihibitpic}
+            arr_data = {'ima_url':exihibitpic}  # 返回封装
         else:
             return get_json_response(request, dict(suc_id=1, ret_cd=105, ret_ts=int(time.time()),errorMsg = 'The request timeout',im_id=img_name,successResult=None))
-
         return get_json_response(request, dict(suc_id=1, ret_cd=200, ret_ts=int(time.time()),errorMsg = '',im_id=img_name,successResult=arr_data))
 
     except Exception as err:

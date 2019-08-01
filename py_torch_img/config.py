@@ -14,6 +14,7 @@ from django.conf import settings
 # 参数 动作/00
 # 获取每个动作的 value 值
 # return  False/None、 True/value
+# 目前只有固定的command，后期可以改成db可以配置的~
 '''
 def command_action(action):
     try:
