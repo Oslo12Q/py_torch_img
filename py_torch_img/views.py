@@ -88,11 +88,12 @@ def input_img(request):
                 ret = detect_ready(img_name,out_paths)
                 if ret:
                     return ret
+                time.sleep(1)
             return ''
         # 检索生成的new图片
         detect_path = wait_ready(img_name,out_paths)
         if detect_path:
-            strs = detect_path[28:] # 获取相对应的字符串
+            strs = detect_path[28:]
             exihibitpic = 'http://%s/%s' % (host_url, strs)
             arr_data = {'ima_url':exihibitpic}  # 返回封装
         else:
