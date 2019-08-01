@@ -78,8 +78,16 @@ def input_img(request):
         original_image.write(file_objects)
         original_image.close()
 
-        # 目前是同步，出现阻塞的几率比较大
-        ar_img = link(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
+        #try: 建议异步，同步阻塞~
+        t = threading.Thread(target= link,args = (input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths))
+        t.start()
+        #t.join()
+        #except Exception as err:
+            
+        #    return get_json_response(request, dict(suc_id=1, ret_cd=105, ret_ts=int(time.time()),errorMsg = 'The request timeout',im_id=img_name,successResult=None))
+        
+        #try:
+        #ar_img = link(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths)
         #except Exception as err:
         #    return get_json_response(request, dict(suc_id=1, ret_cd=105, ret_ts=int(time.time()),errorMsg = 'The request timeout',im_id=img_name,successResult=None))
         def wait_ready(img_name,out_paths):
@@ -87,6 +95,8 @@ def input_img(request):
                 ret = detect_ready(img_name,out_paths)
                 if ret:
                     return ret
+                time.sleep(1)
+            return ''
         # 检索生成的new图片
         detect_path = wait_ready(img_name,out_paths)
         if detect_path:
