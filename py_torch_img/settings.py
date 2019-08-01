@@ -53,8 +53,6 @@ WSGI_APPLICATION = 'py_torch_img.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -62,9 +60,6 @@ DATABASES = {
     }
 }
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -94,13 +89,3 @@ OUTPUT_PATH = '/data/py_torch/py_torch_img/images/'
 MODEL_PATH = '/data/py_torch/py_torch_img/py_torch_img/stargan_master/stargan_celeba_256/models'
 # 检索文件.jpg
 IMG_OUTPUT_EXTENSIONS = ['.jpg']
-
-'''
-# 输入路径
-INPUT_PATH = '/data/stargan_master/input/'
-# 输出路径
-OUTPUT_PATH = '/data/stargan_master/result/'
-# 模型路径
-MODEL_PATH = '/data/stargan_master/stargan_celeba_256/models'
-
-'''
