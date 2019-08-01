@@ -14,8 +14,8 @@ open  settings.py
 # 快速部署
 ```
 cd py_torch_img
-pip install -r requirements.txt
-python manage.py runserver 0.0.0.0:80
+pip install -r requirements.txt   # requirements.txt  里边是依赖包
+python manage.py runserver 0.0.0.0:80 # 运行测试
 ```
 
 #如果项目想暂时挂起来后台运行：nohup python3 manage.py  runserver 0.0.0.0:80 &
