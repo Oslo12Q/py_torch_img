@@ -18,6 +18,9 @@ pip install -r requirements.txt
 python manage.py runserver 0.0.0.0:80
 ```
 
+#如果项目想暂时挂起来后台运行：nohup python3 manage.py  runserver 0.0.0.0:80 &
+
+
 # API 地址
 ```
 yuming/api/
@@ -28,6 +31,8 @@ yuming/api/
 POST
 ```
 
+# sover.py
+生成的新图片名称改成{}.jpg
 
 #目前api是同步，（new image ）时间比较慢，容易阻塞。建议异步  改成异步可以如下部署
 
