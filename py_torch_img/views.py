@@ -81,9 +81,9 @@ def input_img(request):
 
         #try: 建议异步，同步阻塞~
         # 函数放线程里边处理
-        t = threading.Thread(target= link,args = (input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths,solver.G))
-        t.start()
-
+        #t = threading.Thread(target= link,args = (input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths,solver.G))
+        #t.start()
+        link(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths,solver.G)
         def wait_ready(img_name,out_paths):
             for i in range(20):
                 ret = detect_ready(img_name,out_paths)
