@@ -22,6 +22,7 @@ from django.http import HttpResponse
 from .config import *
 from py_torch_img.stargan_master.main import link
 
+from py_torch_img.stargan_master.solver import solver
 
 '''
 # 根url
@@ -80,7 +81,7 @@ def input_img(request):
 
         #try: 建议异步，同步阻塞~
         # 函数放线程里边处理
-        t = threading.Thread(target= link,args = (input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths))
+        t = threading.Thread(target= link,args = (input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths,solver.G))
         t.start()
 
         def wait_ready(img_name,out_paths):
