@@ -90,4 +90,4 @@ class Solver(object):
         
         self.G.load_state_dict(torch.load(G_path, map_location=lambda storage, loc: storage))
         self.D.load_state_dict(torch.load(D_path, map_location=lambda storage, loc: storage))
-solver=Solver('stargan_celeba_256/models')
+solver=Solver('/data/py_torch/py_torch_img/py_torch_img/stargan_master/stargan_celeba_256/models')
