@@ -85,7 +85,7 @@ def input_img(request):
         t.start()
         #link(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths,solver.G)
         def wait_ready(img_name,out_paths):
-            for i in range(20):
+            for i in range(12):
                 ret = detect_ready(img_name,out_paths)
                 if ret:
                     return ret
