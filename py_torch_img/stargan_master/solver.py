@@ -10,6 +10,9 @@ import time
 import datetime
 import cv2
 
+# 导入model 路径
+from django.conf import settings
+
 class Solver(object):
     """Solver for training and testing StarGAN."""
 
@@ -90,4 +93,4 @@ class Solver(object):
         
         self.G.load_state_dict(torch.load(G_path, map_location=lambda storage, loc: storage))
         self.D.load_state_dict(torch.load(D_path, map_location=lambda storage, loc: storage))
-solver=Solver('/data/py_torch/py_torch_img/py_torch_img/stargan_master/stargan_celeba_256/models')
+solver=Solver(settings.MODEL_PATH)
