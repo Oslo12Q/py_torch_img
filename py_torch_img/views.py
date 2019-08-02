@@ -80,9 +80,7 @@ def input_img(request):
         original_image.close()
 
         #try: 建议异步，同步阻塞~
-        # 函数放线程里边处理
-        #t = threading.Thread(target= link,args = (input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths,solver.G))
-        #t.start()
+        # 如果link报错，返回超时
         try:
             link(input_paths,img_name,settings.MODEL_PATH,[command_value],out_paths,solver.G)
         except Exception as err:
