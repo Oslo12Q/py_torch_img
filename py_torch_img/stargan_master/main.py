@@ -88,7 +88,7 @@ def test(my_loader,device,selected_attrs,result_dir,shape,imagename,G):
                 x_fake =G(x_real, c_trg)
                 # Save the translated images.
                 x_result = denorm(x_fake.data.cpu())
-                result_path = os.path.join(result_dir, '{}'.format(imagename))
+                result_path = os.path.join(result_dir, '{}.jpg'.format(imagename))
 
                 result_new = T.ToPILImage()(torch.squeeze(x_result)).convert('RGB')
                 result_new = result_new.resize((shape[1],shape[0]),Image.BILINEAR)
