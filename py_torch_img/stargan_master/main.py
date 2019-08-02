@@ -1,7 +1,8 @@
 import os
-import cv2
 import argparse
-from .solver import Solver
+import cv2
+from torchvision import transforms as T
+from PIL import Image
 from .data_loader1 import  get_loader1
 from torch.backends import cudnn
 import numpy as np
