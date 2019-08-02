@@ -22,7 +22,7 @@ def link(input_dir,imagename,model_save_dir,selected_attrs,result_dir,G):
     selected_attrs=selected_attrs
     result_dir=result_dir
     num_workers=1
-    image_size=1024
+    image_size=256
     # For fast training.
     cudnn.benchmark = True
     G=G
