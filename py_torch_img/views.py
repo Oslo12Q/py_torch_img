@@ -101,8 +101,8 @@ def input_img(request):
         return get_json_response(request, dict(suc_id=1, ret_cd=200, ret_ts=int(time.time()),errorMsg = '',im_id=img_name,successResult=arr_data))
 
     except Exception as err:
-        #logging.error(err)
-        #logging.error(traceback.format_exc())
+        logging.error(err)
+        logging.error(traceback.format_exc())
         return get_json_response(request, dict(suc_id=0, ret_cd=500, ret_ts=int(time.time()),errorMsg = 'Server internal error',im_id='',successResult=None))
 
 
