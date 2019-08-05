@@ -96,8 +96,10 @@ def input_img(request):
         # 检索生成的new图片
         detect_path = wait_ready(img_name,out_paths)
         if detect_path:
-            strs = detect_path[28:]
-            exihibitpic = 'http://%s/%s' % (host_url, strs)
+            jpgs = detect_path.split("/")[-1]
+            strs = detect_path.split("/")[-2]
+            imgs = detect_path.split("/")[-3]
+            exihibitpic = 'http://%s/%s/%s/%s' % (host_url, imgs, strs, jpgs)
             arr_data = {'ima_url':exihibitpic}  # 返回封装
         else:
             return get_json_response(request, dict(suc_id=1, ret_cd=105, ret_ts=int(time.time()),errorMsg = 'The request timeout',im_id=img_name,successResult=None))
