@@ -1,6 +1,6 @@
 absl-py==0.7.1
 astor==0.8.0
-bleach==1.5.0
+bleach==3.1.2
 chardet==2.3.0
 command-not-found==0.3
 Django==1.8
