@@ -19,7 +19,7 @@ requests==2.9.1
 six==1.10.0
 ssh-import-id==5.5
 tensorboard==1.8.0
-tensorflow==1.8.0
+tensorflow==1.15.4
 termcolor==1.1.0
 torch==1.1.0
 torchvision==0.3.0
